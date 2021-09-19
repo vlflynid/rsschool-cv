@@ -9,6 +9,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="highlight.css">
     <title>Document</title>
 </head>
 <body>
@@ -135,7 +136,29 @@
                 </div>
             </div>
 
-            <div class="right-side__code"></div>
+            <div class="right-side__code">
+                <div class="right-side__code_cloud">
+                    <pre><code class="javascript">
+                        const getTalons = async () => {  // Инициализация функции получения данных с сервера
+                        const loader = document.querySelector('.loader')
+                        loader.classList.remove('del')
+                        let returnData = []
+                        
+                        await fetch('get_talons.php')
+                          .then((response) => {
+                            return response.json();
+                          })
+                          .then((data) => {
+                              console.log(data)
+                              renderTalons(data)
+                              returnData = data
+                              loader.classList.add('del')
+                          })
+                    
+                        return returnData
+                    }</code></pre>
+                </div>
+            </div>
         </div>
     </main>
 </body>
